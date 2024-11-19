@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Data\DataSeed\" />
+    <Folder Include="Data\Configurations\" />
   </ItemGroup>
 
 </Project>
