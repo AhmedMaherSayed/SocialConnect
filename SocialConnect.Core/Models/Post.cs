@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SocialConnect.Core.Models
 {
-    public class Post:BaseEntity<Guid>
+    public class Post:BaseEntity<string>
     {
         public string Title { get; set; }
         public string Description { get; set; }
         [ForeignKey("user")]
-        public Guid useId_fk { get; set; }
+        public string? useId_fk { get; set; }
         public virtual User user { get; set; }
         public virtual List<Comment> comments { get; set; } = new List<Comment>();
 
