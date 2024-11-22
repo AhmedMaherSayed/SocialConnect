@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SocialConnect.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,18 @@ namespace SocialConnect.Repository.Data
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CommentReact> ComsmentReact { get; set; }
+        public virtual DbSet<FollowingUser> FollowingUsers { get; set; }
+        public virtual DbSet<Massage> Massages { get; set; }
+        public virtual DbSet<massageReact> massageReacts { get; set; }
+        public virtual DbSet<React> React { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<postReacts> postReacts { get; set; }
+        public virtual DbSet<SavedPost> SavedPosts { get; set; }
+        public virtual DbSet<User> User { get; set; }
+       
+
         // Add DbSets here!
     }
 }
