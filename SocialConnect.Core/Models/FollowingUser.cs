@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace SocialConnect.Core.Models
 {
-    public class FollowingUser : BaseEntity<Guid>
+    public class FollowingUser : BaseEntity<string>
     {
-        [ForeignKey("user")]
-        public Guid MyID { get; set; }
-        public virtual User user { get; set; }
-        [ForeignKey("users")]
-        public Guid FollowinguseId_fk { get; set; }
-        public virtual User users { get; set; }
+        //[ForeignKey("user")]
+        public string? user_Id { get; set; }
+        //public virtual User user { get; set; }
+        //[ForeignKey("users")]
+        public string? FollowinguseId_fk { get; set; }
+        //public virtual User users { get; set; }
     }
 }
