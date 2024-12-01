@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialConnect.Repository.Data;
 
@@ -11,9 +12,11 @@ using SocialConnect.Repository.Data;
 namespace SocialConnect.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241201112710_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,12 +54,12 @@ namespace SocialConnect.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b7d9fecb-ac74-40cc-8869-fabd311deaa5",
+                            Id = "4875a3f9-fca3-4c09-bc7f-f62e0e8f1017",
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = "6113f4d0-69b8-4a6a-8e9e-e2bc86a3d8f0",
+                            Id = "b18cf3fe-63d3-444f-99f3-a32e40f9e0c7",
                             Name = "User"
                         });
                 });
@@ -531,10 +534,6 @@ namespace SocialConnect.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfileURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

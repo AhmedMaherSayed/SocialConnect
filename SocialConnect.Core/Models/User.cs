@@ -11,6 +11,8 @@ namespace SocialConnect.Core.Models
     {
         public string Photo { get; set; }
         public string ProfileURL { get; set; }
+        public string address { get; set; }
+      
         public virtual List<Post> posts { get; set; } = new List<Post>();
 
         public virtual List<Comment> comments { get; set; } = new List<Comment>();

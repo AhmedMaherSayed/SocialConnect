@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialConnect.Core.Models;
 using System;
@@ -24,6 +25,9 @@ namespace SocialConnect.Repository.Data
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole("Admin"),
+                new IdentityRole("User"));
         }
         public virtual DbSet<User> User { get; set; }
 
