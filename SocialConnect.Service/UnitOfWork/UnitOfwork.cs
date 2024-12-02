@@ -3,14 +3,14 @@ using SocialConnect.Core.Models;
 using SocialConnect.Repository.Data;
 using SocialConnect.Service;
 
-namespace Bookstore.Repository
+namespace SocialConnect.Service
 {
     public class UnitOfwork
     {
         ApplicationDbContext db;
         GenericRepository<Post> Postrepository;
         
-        public UnitOfwork(ApplicationDbContext db)
+        public UnitOfwork(ApplicationDbContext db )
         {
             this.db = db;
         }

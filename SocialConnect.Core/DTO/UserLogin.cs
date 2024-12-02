@@ -9,7 +9,7 @@ namespace SocialConnect.Core.DTO
 {
     public class UserLogin
     {
-        [RegularExpression("[A-Za-z]+", ErrorMessage = "Username does not cantain any number")]
+        
         [Required]
         public string username { get; set; }
         [Required]

@@ -1,10 +1,10 @@
 ﻿
-using Bookstore.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SocialConnect.Core.DTO;
+using SocialConnect.Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,14 +13,14 @@ namespace SocialConnect.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   [ApiExplorerSettings(GroupName = "Loginout")]
+  // [ApiExplorerSettings(GroupName = "Loginout")]
     public class LoginoutController : ControllerBase
     {
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signmanager;
         // UnitOfwork db;
 
-        public LoginoutController(UnitOfwork db, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signmanager)
+        public LoginoutController( UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signmanager)
         {
             //this.db = db;
             this.userManager = userManager;

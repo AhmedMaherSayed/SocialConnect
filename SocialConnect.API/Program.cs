@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SocialConnect.Repository.Data;
+using SocialConnect.Service;
 using System.Text;
 
 namespace SocialConnect.API
@@ -20,11 +21,12 @@ namespace SocialConnect.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            
+
             // Register DbContext Service
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"))
             );
+            builder.Services.AddScoped<UnitOfwork>();
 
             // Register Identity Service
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()

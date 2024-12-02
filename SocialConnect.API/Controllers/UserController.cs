@@ -20,14 +20,15 @@ namespace SocialConnect.API.Controllers
             this.role = role;
         }
         [HttpPost]
-        public IActionResult AddUser(UserDto model)
+        public IActionResult AddUser(RegisterUser model)
         {
             if (ModelState.IsValid)
             {
                 User user = new User()
                 {
                     Email = model.Email,
-                    UserName = model.username,
+                    UserName = model.Email,
+                    FullName=model.username,
                     PhoneNumber = model.PhoneNumber,
                     address = model.Address,
 
@@ -63,7 +64,7 @@ namespace SocialConnect.API.Controllers
             {
                 var cs = new UserDto(){ 
                 Id = User.Id,
-                username = User.UserName,
+                username = User.FullName,
                 Email = User.Email,
                 Address = User.address,
                 PhoneNumber = User.PhoneNumber};
@@ -82,7 +83,7 @@ namespace SocialConnect.API.Controllers
             var CS = new UserDto()
             {
                 Id=id,
-                username = cs.UserName,
+                username = cs.FullName,
               
                 Email = cs.Email,
                 Address = cs.address,
@@ -97,11 +98,13 @@ namespace SocialConnect.API.Controllers
             {
                 var cs = (User)userManager.FindByIdAsync(UserEditDTO.Id).Result;
                 if (cs == null) return NotFound();
-                cs.Id = UserEditDTO.Id;
+                
                 cs.PhoneNumber = UserEditDTO.PhoneNumber;
                 cs.address = UserEditDTO.Address??cs.PhoneNumber;
                 cs.Email = UserEditDTO.Email??cs.Email;
-                cs.UserName = UserEditDTO.username??cs.UserName;
+                cs.UserName = UserEditDTO.Email ?? cs.Email;
+
+                cs.FullName = UserEditDTO.username??cs.FullName;
                
                 var res = userManager.UpdateAsync(cs).Result;
                 if (res.Succeeded)

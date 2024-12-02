@@ -38,6 +38,7 @@ namespace SocialConnect.Service
         }
         public void Add(T Entity)
         {
+            
             db.Set<T>().Add(Entity);
         }
         public void Delete(T Entity)
