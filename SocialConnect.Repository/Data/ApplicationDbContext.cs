@@ -26,14 +26,18 @@ namespace SocialConnect.Repository.Data
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<IdentityRole>().HasData(
-                new IdentityRole("Admin"),
-                new IdentityRole("User"));
+                new IdentityRole() { Name= "Admin" ,NormalizedName="ADMIN"},
+                new IdentityRole() { Name = "User", NormalizedName = "USER" });
         }
         public virtual DbSet<User> User { get; set; }
 
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<CommentReact> ComsmentReact { get; set; }
-        public virtual DbSet<Massage> Massages { get; set; }
+        public virtual DbSet<Message> Massages { get; set; }
+        public virtual DbSet<FrindsUser> FrindsUsers { get; set; }
+        public virtual DbSet<Notficiation> Notficiations { get; set; }
+
+        
         public virtual DbSet<massageReact> massageReacts { get; set; }
         public virtual DbSet<React> React { get; set; }
         public virtual DbSet<Post> Posts { get; set; }

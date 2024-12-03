@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SocialConnect.Core.DTO;
 using SocialConnect.Service;
+using Swashbuckle.AspNetCore.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -27,6 +28,10 @@ namespace SocialConnect.API.Controllers
             this.signmanager = signmanager;
         }
         [HttpPost("Login")]
+        [SwaggerOperation(
+            Summary = "Loigin"
+           
+        )]
         public async Task<IActionResult> Login(UserLogin cs)
         {
             if (ModelState.IsValid)
@@ -36,7 +41,8 @@ namespace SocialConnect.API.Controllers
                 {
                     var user = await userManager.FindByNameAsync(cs.username);
                     #region generate token
-
+                    // Save user ID in session
+                    HttpContext.Session.SetString("UserId", user.Id);
                     List<Claim> userdata = new List<Claim>();
                     userdata.Add(new Claim(ClaimTypes.Name, user.UserName));
                     userdata.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
@@ -60,12 +66,16 @@ namespace SocialConnect.API.Controllers
                     #endregion
                 }
                 else
-                    return Unauthorized();
+                    return BadRequest(ModelState);
             }
             else
                 return BadRequest(ModelState);
         }
         [HttpPost("Logout")]
+        [SwaggerOperation(
+            Summary = "Loig Out"
+
+        )]
         public IActionResult Logout()
         {
             signmanager.SignOutAsync();

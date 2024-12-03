@@ -21,8 +21,10 @@ namespace SocialConnect.Core.Models
         public virtual User user { get; set; }
         public virtual Post post { get; set; }
         public virtual Comment comment { get; set; }
+      
         public virtual List<Comment> comments { get; set; }= new List<Comment>();
-       
+        public virtual List<React> Reacts { get; set; }= new List<React>();
+
 
 
     }

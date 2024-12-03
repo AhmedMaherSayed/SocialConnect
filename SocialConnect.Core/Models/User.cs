@@ -22,7 +22,7 @@ namespace SocialConnect.Core.Models
         public virtual List<CommentReact> CommentReacts { get; set; } = new List<CommentReact>();
         //public virtual List<FollowingUser> Users { get; set; } = new List<FollowingUser>();
         public virtual List<SavedPost> SavedPosts { get; set; } = new List<SavedPost>();
-        public virtual List<Massage> Massages { get; set; } = new List<Massage>();
+        public virtual List<Message> Massages { get; set; } = new List<Message>();
         public virtual List<massageReact> massageReact { get; set; } = new List<massageReact>();
 
 

@@ -15,7 +15,9 @@ namespace SocialConnect.Core.DTO
         public string Description { get; set; }
         
         public string? useId_fk { get; set; }
+        public int countReact {  get; set; }
       
-        public virtual List<Comment> comments { get; set; } = new List<Comment>();
+        public virtual List<Comment> comments { get; set; }= new List<Comment>();
+        public virtual List<React> Reacts { get; set; }= new List<React>();
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialConnect.Repository.Data;
 
@@ -11,9 +12,11 @@ using SocialConnect.Repository.Data;
 namespace SocialConnect.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203125005_v8")]
+    partial class v8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,13 +57,13 @@ namespace SocialConnect.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c9cf454c-f0f9-4c2a-9218-32957f87d44c",
+                            Id = "bb3bd686-34e0-4e28-ba5f-4b81e296d4e9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2befd694-88c2-44e4-99cd-1ee7bba22bbe",
+                            Id = "a072d57e-20a6-451f-87eb-67dc319e5964",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -343,38 +346,6 @@ namespace SocialConnect.Repository.Migrations
                     b.ToTable("FollowingUsers");
                 });
 
-            modelBuilder.Entity("SocialConnect.Core.Models.FrindsUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("Aprove")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FrindsId_fk")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModefiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("user_Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FrindsId_fk");
-
-                    b.HasIndex("user_Id");
-
-                    b.ToTable("FrindsUsers");
-                });
-
             modelBuilder.Entity("SocialConnect.Core.Models.Message", b =>
                 {
                     b.Property<string>("Id")
@@ -412,35 +383,6 @@ namespace SocialConnect.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Massages");
-                });
-
-            modelBuilder.Entity("SocialConnect.Core.Models.Notficiation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Seen")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Notficiations");
                 });
 
             modelBuilder.Entity("SocialConnect.Core.Models.Post", b =>
@@ -714,21 +656,6 @@ namespace SocialConnect.Repository.Migrations
                     b.Navigation("react");
 
                     b.Navigation("user");
-                });
-
-            modelBuilder.Entity("SocialConnect.Core.Models.FrindsUser", b =>
-                {
-                    b.HasOne("SocialConnect.Core.Models.User", "Frind")
-                        .WithMany()
-                        .HasForeignKey("FrindsId_fk");
-
-                    b.HasOne("SocialConnect.Core.Models.User", "My")
-                        .WithMany()
-                        .HasForeignKey("user_Id");
-
-                    b.Navigation("Frind");
-
-                    b.Navigation("My");
                 });
 
             modelBuilder.Entity("SocialConnect.Core.Models.Message", b =>

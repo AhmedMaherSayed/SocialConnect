@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SocialConnect.Core.DTO;
 using SocialConnect.Core.Models;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 
 namespace SocialConnect.API.Controllers
@@ -20,6 +21,12 @@ namespace SocialConnect.API.Controllers
             this.role = role;
         }
         [HttpPost]
+        [SwaggerOperation(
+            Summary = "Add new User",
+            Description = "Registeration to the system"
+        )]
+        [SwaggerResponse(201, "User Add successfully", typeof(RegisterUser))]
+        [SwaggerResponse(400, "Invalid User data")]
         public IActionResult AddUser(RegisterUser model)
         {
             if (ModelState.IsValid)
@@ -55,6 +62,12 @@ namespace SocialConnect.API.Controllers
             return BadRequest(ModelState.ErrorCount);
         }
         [HttpGet]
+        [SwaggerOperation(
+            Summary = "Get all User",
+            Description = "Retrieve a list of User "
+        )]
+        [SwaggerResponse(200, "Successfully retrieved User", typeof(List<UserDto>))]
+
         public IActionResult Get()
         {
             // var Users = db.Userrepository.Selectall();
@@ -76,6 +89,12 @@ namespace SocialConnect.API.Controllers
             return Ok(Usersdto);
         }
         [HttpGet("{id}")]
+        [SwaggerOperation(
+            Summary = "Get User by ID",
+            Description = "Retrieve a specific User using its unique identifier"
+        )]
+        [SwaggerResponse(200, "User found", typeof(UserDto))]
+        [SwaggerResponse(404, "User not found")]
         public IActionResult GetbyId(string id)
         {
             var cs = (User)userManager.GetUsersInRoleAsync("User").Result.Where(c => c.Id == id).SingleOrDefault();
@@ -92,6 +111,13 @@ namespace SocialConnect.API.Controllers
             return Ok(CS);
         }
         [HttpPut]
+        [SwaggerOperation(
+            Summary = "Update an existing Useer",
+            Description = "Modify details of an existing User"
+        )]
+        [SwaggerResponse(200, "User Data updated successfully", typeof(UserDto))]
+        [SwaggerResponse(400, "Invalid User data")]
+        [SwaggerResponse(404, "User not found")]
         public IActionResult Edit(UserDto UserEditDTO)
         {
             if (ModelState.IsValid)

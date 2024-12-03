@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialConnect.Repository.Data;
 
@@ -11,9 +12,11 @@ using SocialConnect.Repository.Data;
 namespace SocialConnect.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241203151912_v9")]
+    partial class v9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,13 +57,13 @@ namespace SocialConnect.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c9cf454c-f0f9-4c2a-9218-32957f87d44c",
+                            Id = "7441980d-6912-41f0-a00f-9d659ff94a50",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "2befd694-88c2-44e4-99cd-1ee7bba22bbe",
+                            Id = "3a0e4746-dcea-48b8-91b9-4cd4c1fba5cc",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -424,9 +427,6 @@ namespace SocialConnect.Repository.Migrations
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Seen")
-                        .HasColumnType("bit");
 
                     b.Property<string>("URL")
                         .HasColumnType("nvarchar(max)");

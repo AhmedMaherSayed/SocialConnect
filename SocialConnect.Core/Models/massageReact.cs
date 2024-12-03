@@ -15,7 +15,7 @@ namespace SocialConnect.Core.Models
         public virtual User user { get; set; }
         [ForeignKey("massage")]
         public string? MassageId_fk { get; set; }
-        public virtual Massage massage { get; set; }
+        public virtual Message massage { get; set; }
         [ForeignKey("react")]
 
         public string? Fk_ReactId { get; set; }
