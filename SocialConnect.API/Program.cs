@@ -41,7 +41,7 @@ namespace SocialConnect.API
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey,
+                Type = SecuritySchemeType.http,
                 Scheme = "Bearer",
                 BearerFormat = "JWT",
                 In = ParameterLocation.Header,
@@ -86,7 +86,7 @@ namespace SocialConnect.API
                     IssuerSigningKey = secretKey,
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    ValidateLifetime = true
+                    ValidateLifetime = false
                 };
             });
             builder.Services.Configure<IdentityOptions>(options =>
